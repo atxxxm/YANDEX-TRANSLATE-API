@@ -1,20 +1,44 @@
-# Документация к API перевода текста через Yandex Translate (playwright)
+# YANDEX TRANSLATE API
 
-## Описание
-Асинхронная функция `get_text` предназначена для перевода текста с одного языка на другой с помощью веб-интерфейса Яндекс Переводчика.
+## Данный модуль предоставляет две функции для перевода текста с помощью Яндекс Переводчика
+- async_yandex_translate_api — асинхронная версия
+- yandex_translate_api — синхронная версия
 
-## Сигнатура
-```python
-async def get_text(text: str, from_lang: str, to_lang: str) -> str
-```
+## Требуемые библиотеки:
+- playwright
+- asyncio (для асинхронной версии)
 
-## Параметры
-- `text` (str): Текст для перевода.
-- `from_lang` (str): Язык исходного текста (например, 'ru' — русский).
-- `to_lang` (str): Язык, на который нужно перевести (например, 'en' — английский).
+## Установка Playwright:
+```pip install playwright```
+```playwright install```
 
-## Возвращаемое значение
+## Импорт:
+```from YANDEX_TRANSALTE_API import yandex_translate_api, async_yandex_translate_api```
+
+## Описание функций:
+```async def async_yandex_translate_api(text: str, from_lang: str, to_lang: str) -> str - Асинхронный перевод текста с одного языка на другой через Яндекс Переводчик.```
+
+```def yandex_translate_api(text: str, from_lang: str, to_lang: str) -> str - Синхронный перевод текста с одного языка на другой через Яндекс Переводчик.```
+
+## Параметры:
+
+- text (str): Текст для перевода.
+- from_lang (str): Язык исходного текста (например, 'ru' — русский).
+- to_lang (str): Язык, на который нужно перевести (например, 'en' — английский).
+
+## Возвращаемое значение:
 - Переведённый текст (str), либо строка "No text" в случае неудачи.
+
+## Пример использования:
+
+### Синхронно
+```result = yandex_translate_api("Привет, мир!", "ru", "en")```
+```print(result)```
+
+### Асинхронно
+```import asyncio```
+```result = asyncio.run(async_yandex_translate_api("Привет, мир!", "ru", "en"))```
+```print(result)```
 
 ## Доступные языки
 - ru — русский
@@ -58,11 +82,3 @@ async def get_text(text: str, from_lang: str, to_lang: str) -> str
 - sk — словацкий
 - sl — словенский
 - mt — мальтийский
-
-## Пример использования
-```python
-import asyncio
-
-text = asyncio.run(get_text("Привет, мир!", "ru", "en"))
-print(text)  # Hello, world!
-```
